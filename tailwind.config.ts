@@ -1,12 +1,17 @@
 import type { Config } from "tailwindcss";
 
 export default {
+	// ダークモードを有効にするための設定
     darkMode: ["class"],
+
+	// どのファイルを対象にクラスを探してビルドを行うかを指定
     content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
+  // Tailwindの基本テーマを拡張・上書きするための設定
   theme: {
   	extend: {
   		colors: {
@@ -68,5 +73,7 @@ export default {
   		}
   	}
   },
+
+  // 拡張プラグインを追加するための設定
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
