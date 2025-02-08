@@ -1,9 +1,9 @@
 import { auth as middleware } from "@/auth"
-import { apiAuthPrefix, authRoutes, DEFALT_LOGIN_REDIRECT, publicRoutes } from "@/routes";
+import { apiAuthPrefix, authRoutes, DEFALT_LOGIN_REDIRECT, publicRoutes } from "@/routes"
 
 export default middleware((req) => {
     // req.auth
-    const { nextUrl } = req;
+    const { nextUrl } = req
     const isLoggedIn = !!req.auth
 
     // `/api/auth`から始まるURLの場合はtrue, それ以外はfalse
