@@ -1,6 +1,7 @@
-import AppSidebar from "@/components/app-sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { cookies } from "next/headers";
+import { signOut } from "@/auth"
+import AppSidebar from "@/components/app-sidebar"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { cookies } from "next/headers"
 
 const MainLayout = async ({
     children
@@ -12,15 +13,22 @@ const MainLayout = async ({
     const cookieStore = await cookies()
     const defaultOpen = cookieStore.get("sidebar:state")?.value === "true"
 
+    // サイドバーのログアウト
+    const sidebarSignout = async () => {
+        "use server"
+
+        await signOut()
+    }
+
     return (
         <SidebarProvider defaultOpen={defaultOpen}>
-            <AppSidebar />
+            <AppSidebar signOut={sidebarSignout} />
             <SidebarTrigger />
                 <main>
                     {children}
                 </main>
         </SidebarProvider>
-    );
+    )
 }
 
 export default MainLayout;
